@@ -14,7 +14,6 @@ import CypherInput from './CypherInput'
 // }
 const App = () => (
   <div>
-    <h1>First React App</h1>
     <SendButton />
     <CypherInput />
   </div>
