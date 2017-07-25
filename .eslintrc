@@ -3,5 +3,17 @@
   "rules": {
     "semi": 0
   },
-  "extends": ["airbnb-base"]
+  "env": {
+        "browser": true,
+        "node": true
+    },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": ["airbnb-base", "plugin:react/recommended"],
+  "plugins": [
+    "react"
+  ]
 }
