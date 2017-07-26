@@ -1,6 +1,9 @@
 {
   "name": "eng-intern-project",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.1.x"
+  },
   "main": "index.js",
   "repository": "git@github.com:dollarshaveclub/eng-intern-project.git",
   "author": "<jasonLseibel@gmail.com>",
