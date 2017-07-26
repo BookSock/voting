@@ -6,7 +6,8 @@
   "author": "<jasonLseibel@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "build": "webpack -p"
   },
   "dependencies": {
     "html-webpack-plugin": "^2.29.0",
