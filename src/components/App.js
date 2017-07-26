@@ -18,12 +18,12 @@ class App extends React.Component {
     this.setState({ textInput: event.target.value })
   }
 
-  async handleClick() {
-    const response = await fetch('https://gv-api.tools.shave.io/queries')
-    // const response = await fetch('http://google.com')
-    const data = await response.json()
-    this.setState({ apiResponse: data.data.visitCount })
-  }
+  // async handleClick() {
+  //   const response = await fetch('https://gv-api.tools.shave.io/queries')
+  //   // const response = await fetch('http://google.com')
+  //   const data = await response.json()
+  //   this.setState({ apiResponse: data.data.visitCount })
+  // }
 
   render() {
     return (
