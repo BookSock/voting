@@ -11,21 +11,14 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 })
 
 module.exports = {
-  entry: './src/index.js',
-  resolve: {
-   modules: [
-     path.join(__dirname, "src"),
-     "node_modules"
-   ]
- },
+  entry: ["babel-polyfill", './src/index.js'],
   output: {
     path: path.resolve('dist'),
     filename: 'index_bundle.js',
   },
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.js$/, loader:  'eslint-loader', exclude: /node_modules/ },
+      { test: /\.js$/, loaders: ['babel-loader', 'eslint-loader'], exclude: /node_modules/ },
       { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
       {
         test: /\.js$/,
