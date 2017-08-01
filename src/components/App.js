@@ -1,6 +1,8 @@
 import { Container, Grid, Message, TextArea, Button } from 'semantic-ui-react'
 import React from 'react'
 import { Chart } from 'react-google-charts'
+import BarChart from './BarChart'
+import WorldMap from './WorldMap'
 
 class App extends React.Component {
   constructor(props) {
@@ -49,12 +51,22 @@ class App extends React.Component {
               <h1>API Response</h1>
             </Grid.Row>
             <Grid.Row>
+              <p>google chart through script tag below</p>
               <div id="chart_div"></div>
             </Grid.Row>
             <Grid.Row>
               <Message>{this.state.apiResponse}</Message>
             </Grid.Row>
             <Grid.Row>
+              <p>d3 map drawn by react</p>
+              <WorldMap />
+            </Grid.Row>
+            <Grid.Row>
+              <p>d3 graph drawn by d3 outside react lifecycle (another way to do d3)</p>
+              <BarChart data={[5, 10, 1, 3, 12, 7, 4, 5, 6, 7, 2.5, 3.3333]} size={[500, 500]} />
+            </Grid.Row>
+            <Grid.Row>
+              <p>google chart through react-google-charts package</p>
               <Chart
                 chartType="ScatterChart"
                 data={[['Age', 'Weight'], [8, 12], [4, 5.5]]}
