@@ -1,5 +1,6 @@
 import { Container, Grid, Message, TextArea, Button } from 'semantic-ui-react'
 import React from 'react'
+import { Chart } from 'react-google-charts'
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +21,6 @@ class App extends React.Component {
 
   async handleClick() {
     const response = await fetch('https://gv-api.tools.shave.io/queries')
-    // const response = await fetch('http://google.com')
     const data = await response.json()
     this.setState({ apiResponse: data.data.visitCount })
   }
@@ -49,7 +49,21 @@ class App extends React.Component {
               <h1>API Response</h1>
             </Grid.Row>
             <Grid.Row>
+              <div id="chart_div"></div>
+            </Grid.Row>
+            <Grid.Row>
               <Message>{this.state.apiResponse}</Message>
+            </Grid.Row>
+            <Grid.Row>
+              <Chart
+                chartType="ScatterChart"
+                data={[['Age', 'Weight'], [8, 12], [4, 5.5]]}
+                options={{}}
+                graph_id="ScatterChart"
+                width="100%"
+                height="400px"
+                legend_toggle
+              />
             </Grid.Row>
           </Grid>
         </div>
