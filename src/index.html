@@ -4,10 +4,22 @@
     <meta charset="utf-8">
     <title>React App Setup</title>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.css"></link>
+    <div id="chart2"></div>
+    <script>
+      var chart = c3.generate({
+        bindto: '#chart2',
+        data: {
+          columns: [
+            ['data1', 30, 200, 100, 400, 150, 250],
+            ['data2', 50, 20, 10, 40, 15, 25]
+          ]
+        }
+      })
+    </script>
     <div>
       <button onclick="transition()">Update</button>
     </div>
-    <svg width="960" height="500"></svg>
+    <svg class="d3jason" width="960" height="500"></svg>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script>
 
@@ -20,7 +32,7 @@
           layers1 = stack(d3.transpose(d3.range(n).map(function() { return bumps(m, k); }))),
           layers = layers0.concat(layers1);
 
-      var svg = d3.select("svg"),
+      var svg = d3.select("svg.d3jason"),
           width = +svg.attr("width"),
           height = +svg.attr("height");
 

@@ -4,6 +4,7 @@ import { Chart } from 'react-google-charts'
 import BarChart from './BarChart'
 import WorldMap from './WorldMap'
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
