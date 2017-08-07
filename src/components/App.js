@@ -25,7 +25,8 @@ class App extends React.Component {
   async handleClick() {
     const response = await fetch('https://gv-api.tools.shave.io/queries')
     const data = await response.json()
-    this.setState({ apiResponse: data.data.visitCount })
+    console.log(data)
+    this.setState({ apiResponse: data })
   }
 
   render() {
