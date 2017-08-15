@@ -12,7 +12,7 @@ class App extends React.Component {
     this.state = {
       apiResponse: "You haven't sent any queries yet!",
       pieChart: false,
-      error: true,
+      error: false,
       beforeAfter: null,
       pageURL: '',
       numResults: '',
@@ -32,12 +32,8 @@ class App extends React.Component {
   }
 
 
-  async handleClick(event) {
+  async handleClick() {
     try {
-      // change the fetch url depending on what api
-      // spec is and what is typed in the box. then erase text
-      console.log(event.target.value)
-
       const response = await fetch('https://gv-api.tools.shave.io/paths?' +
         `page_url=www.dollarshaveclub.com/${this.state.pageURL}&` +
         `type=${this.state.beforeAfter}&` +
@@ -88,6 +84,9 @@ class App extends React.Component {
               <h1>Graph DB Portal</h1>
             </Grid.Row>
             <Grid.Row>
+              <h3>All URLs Begin With www.DollarShaveClub.com/</h3>
+            </Grid.Row>
+            <Grid.Row>
               <Form>
                 <Form.Group widths='equal'>
                   <Form.Select
@@ -135,7 +134,7 @@ class App extends React.Component {
                   is3D: true,
                 }}
                 width="100%"
-                height="400px"
+                height="700px"
               /> : null}
             </Grid.Row>
             <Grid.Row>
