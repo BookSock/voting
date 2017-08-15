@@ -1,4 +1,4 @@
-import { Container, Grid, Message, TextArea, Button, Form } from 'semantic-ui-react'
+import { Container, Grid, Message, Button, Form } from 'semantic-ui-react'
 import React from 'react'
 import { Chart } from 'react-google-charts'
 
@@ -6,38 +6,43 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.handleChange = this.handleChange.bind(this)
 
     this.state = {
       apiResponse: "You haven't sent any queries yet!",
-      textInput: '',
-      pieChart: true,
-      error: false,
+      pieChart: false,
+      error: true,
+      beforeAfter: null,
+      pageURL: '',
+      numResults: '',
+      pathLength: '',
       data: [],
-      /* eslint-disable */
-      data: [
-        ["Path", "Frequency"],
-        ["Work", 11],
-        ["Eat", 2],
-        ["Commute", 2],
-        ["Watch TV", 2],
-        ["Sleep", 7],
-        /* eslint-enable */
-      ],
+      // /* eslint-disable */
+      // data: [
+      //   ["Path", "Frequency"],
+      //   ["Work", 11],
+      //   ["Eat", 2],
+      //   ["Commute", 2],
+      //   ["Watch TV", 2],
+      //   ["Sleep", 7],
+      //   /* eslint-enable */
+      // ],
     }
   }
 
-  handleChange(event) {
-    this.setState({ textInput: event.target.value })
-  }
 
-  async handleClick() {
+  async handleClick(event) {
     try {
       // change the fetch url depending on what api
       // spec is and what is typed in the box. then erase text
+      console.log(event.target.value)
 
-      const response = await fetch('https://gv-api.tools.shave.io/paths?page_url=&type=0&path_length=')
+      const response = await fetch('https://gv-api.tools.shave.io/paths?' +
+        `page_url=www.dollarshaveclub.com/${this.state.pageURL}&` +
+        `type=${this.state.beforeAfter}&` +
+        `path_length=${this.state.pathLength}&` +
+        `num_res=${this.state.numResults}`)
       const r = await response.json()
       this.setState({
         apiResponse: JSON.stringify(r, null, '  '),
@@ -45,7 +50,7 @@ class App extends React.Component {
       // translate response into data and set state again
       this.setState({
         pieChart: true,
-        textInput: '',
+        error: false,
         data: [['Path', 'Frequency'], ...r.data.paths],
       })
     } catch (e) {
@@ -54,6 +59,21 @@ class App extends React.Component {
         error: true,
       })
     }
+  }
+  handleChange(event) {
+    let value
+    let name
+    const target = event.target
+    if (target.type === 'text') {
+      value = target.value
+      name = target.name
+    } else {
+      value = target.innerText
+      name = 'beforeAfter'
+    }
+    this.setState({
+      [name]: value,
+    })
   }
 
   render() {
@@ -70,25 +90,37 @@ class App extends React.Component {
             <Grid.Row>
               <Form>
                 <Form.Group widths='equal'>
-                  <Form.Select label='Before or After?' options = {[
-                    { key: 'b', text: 'Before', value: 'before' },
-                    { key: 'a', text: 'After', value: 'after' }]} />
-                  <Form.Input label='Page URL' placeholder='Page URL'/>
-                  <Form.Input label='Number of Results' placeholder='An integer' />
+                  <Form.Select
+                    type='select'
+                    name='beforeAfter'
+                    label='Before or After?'
+                    value={this.state.beforeAfter}
+                    onChange={this.handleChange}
+                    options = {[
+                      { key: 'b', text: 'Before', value: 'Before' },
+                      { key: 'a', text: 'After', value: 'After' }]}
+                  />
+                  <Form.Input label='Page URL'
+                    type='input'
+                    name='pageURL'
+                    placeholder='...com/YOURINPUT'
+                    value={this.state.pageURL}
+                    onChange={this.handleChange}/>
+                  <Form.Input label='Path Length'
+                    name='pathLength'
+                    type='input'
+                    placeholder='An integer'
+                    value={this.state.pathLength}
+                    onChange={this.handleChange} />
+                  <Form.Input label='Number of Results'
+                    name='numResults'
+                    type='input'
+                    placeholder='An integer'
+                    value={this.state.numResults}
+                    onChange={this.handleChange} />
                 </Form.Group>
+                <Button onClick={this.handleClick} type='submit'>Send Database Query</Button>
               </Form>
-            </Grid.Row>
-            <Grid.Row>
-              <TextArea
-                rows="8"
-                value={this.state.textInput}
-                onChange={this.handleChange}
-              />
-            </Grid.Row>
-            <Grid.Row>
-              <Button onClick={this.handleClick}>
-                Send Database Query
-              </Button>
             </Grid.Row>
             <Grid.Row>
               <h1>API Response</h1>
