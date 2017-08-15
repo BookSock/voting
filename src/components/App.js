@@ -134,7 +134,7 @@ class App extends React.Component {
                   is3D: true,
                 }}
                 width="100%"
-                height="700px"
+                height="1900px"
               /> : null}
             </Grid.Row>
             <Grid.Row>
