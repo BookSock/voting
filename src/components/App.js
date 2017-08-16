@@ -34,7 +34,7 @@ class App extends React.Component {
 
   async handleClick() {
     try {
-      const response = await fetch('https://gv-api.tools.shave.io/paths?' +
+      const response = await fetch('http://localhost:3000//paths?' +
         `page_url=www.dollarshaveclub.com/${this.state.pageURL}&` +
         `type=${this.state.beforeAfter}&` +
         `path_length=${this.state.pathLength}&` +
@@ -134,7 +134,7 @@ class App extends React.Component {
                   is3D: true,
                 }}
                 width="100%"
-                height="1900px"
+                height="4000px"
               /> : null}
             </Grid.Row>
             <Grid.Row>
