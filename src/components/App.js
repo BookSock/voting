@@ -18,23 +18,13 @@ class App extends React.Component {
       numResults: '',
       pathLength: '',
       data: [],
-      // /* eslint-disable */
-      // data: [
-      //   ["Path", "Frequency"],
-      //   ["Work", 11],
-      //   ["Eat", 2],
-      //   ["Commute", 2],
-      //   ["Watch TV", 2],
-      //   ["Sleep", 7],
-      //   /* eslint-enable */
-      // ],
     }
   }
 
 
   async handleClick() {
     try {
-      const response = await fetch('http://localhost:3000//paths?' +
+      const response = await fetch('https://gv-api.tools.shave.io/paths?' +
         `page_url=www.dollarshaveclub.com/${this.state.pageURL}&` +
         `type=${this.state.beforeAfter}&` +
         `path_length=${this.state.pathLength}&` +
@@ -97,7 +87,8 @@ class App extends React.Component {
                     onChange={this.handleChange}
                     options = {[
                       { key: 'b', text: 'Before', value: 'Before' },
-                      { key: 'a', text: 'After', value: 'After' }]}
+                      { key: 'a', text: 'After', value: 'After' },
+                    ]}
                   />
                   <Form.Input label='Page URL'
                     type='input'
