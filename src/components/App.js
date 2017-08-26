@@ -69,12 +69,12 @@ class App extends React.Component {
       <Container fluid={true} >
         <div>
           <Grid centered={true}>
-            {error ? <Grid.Row><h2 color="red">Error! Are you sure you are on the Dev VPN? If so, yell at Jason Seibel about this error</h2></Grid.Row> : null}
+            {error ? <Grid.Row><h2 color="red">Error! Yell at Jason Seibel about this</h2></Grid.Row> : null}
             <Grid.Row>
-              <h1>Graph DB Portal</h1>
+              <h1>Vote Now</h1>
             </Grid.Row>
             <Grid.Row>
-              <h3>All URLs Begin With www.DollarShaveClub.com/</h3>
+              <h3>Rank all options</h3>
             </Grid.Row>
             <Grid.Row>
               <Form>

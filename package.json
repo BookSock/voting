@@ -11,7 +11,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "prod": "NODE_ENV=production node server.js",
-    "postinstall": "webpack -p"
+    "BROKENpostinstall": "webpack -p"
   },
   "dependencies": {
     "babel-core": "^6.25.0",
@@ -32,6 +32,8 @@
     "path": "^0.12.7",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
+    "react-dnd": "^2.4.0",
+    "react-dnd-html5-backend": "^2.4.1",
     "react-dom": "^15.6.1",
     "react-google-charts": "^1.5.5",
     "react-router-dom": "^4.1.2",
